@@ -1,0 +1,11 @@
+
+
+//Used to retrieve National Parks data from API
+export const getParks = () => {
+    return fetch(`https://developer.nps.gov/api/v1/parks?parkCode=acad&api_key=pqyN4FMCqAwMm6pCPoWL6YcGuf7rfI6ecDeVrSku`)
+    .then(response => response.json())
+    .then(parsedResponse => {
+        return parsedResponse;
+    })
+}
+
