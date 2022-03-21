@@ -14,15 +14,18 @@ let attractionElement = document.querySelector("#attraction--state--select")
 let eateriesElement = document.querySelector("#eateries--state--select")
 
 
+//when the state select box changes...
 stateElement.addEventListener("change", event => {
     let newParksArray = []
-    getParks()
+    getParks()  //returns an object that has a data property that contains the 465 arrays (parks).
     .then(response => {
-      for (let item of response.data){
+      console.log(response)
+        for (let item of response.data){
             if (event.target.value === item.states){
                 newParksArray.push(item)            
             }
         }
+        //make the parksDropdown with the filtered NewParksArray
         parksElement.innerHTML = makeParksDropdown(newParksArray)
         document.querySelector(".parks--display").innerHTML = `
             <p></p>
