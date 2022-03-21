@@ -10,6 +10,9 @@ import { makeParksDropdown } from "./parks/parksHTMLgenerator.js"
 
 let stateElement = document.querySelector("#state--select")
 let parksElement = document.querySelector(".parks--dropdown--container")
+let attractionElement = document.querySelector("#attraction--state--select")
+let eateriesElement = document.querySelector("#eateries--state--select")
+
 
 stateElement.addEventListener("change", event => {
     let newParksArray = []
@@ -26,11 +29,40 @@ stateElement.addEventListener("change", event => {
 
 
 
+attractionElement.addEventListener("change", event => {
+    getAttractions().then(response => {
+        for (let item of response) {
+            if (event.target.value === item.state) {
+                document.querySelector(".attractions--display").innerHTML = `
+                    <p> ${item.name} </p>
+                    `
+            }
+        }
+    })
+})
+
+eateriesElement.addEventListener("change", event => {
+    getEateries().then(response => {
+        for (let item of response) {
+            if (event.target.value === item.state) {
+                document.querySelector(".eateries--display").innerHTML = `
+                    <p> ${item.businessName} </p>
+                    `
+            }
+        }
+    })
+})
+
+
 const startPage = () => {
     getStates()
         .then(response => {stateElement.innerHTML = makeStatesDropdown(response)})
+    getStates()
+        .then(response => {attractionElement.innerHTML = makeStatesDropdown(response)})
+        getStates()
+        .then(response => {eateriesElement.innerHTML = makeStatesDropdown(response)})
     header()
     footer()
-} 
+}  
 
 startPage()
