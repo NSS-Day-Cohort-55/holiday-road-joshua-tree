@@ -4,11 +4,5 @@
 export const getParks = () => {
     return fetch(`https://developer.nps.gov/api/v1/parks?api_key=pqyN4FMCqAwMm6pCPoWL6YcGuf7rfI6ecDeVrSku`)
     .then(response => response.json())
-    
-    // .then(parsedResponse => {
-    //     const newResponse = parsedResponse.data
-    //     console.log(newResponse)
-    //     return newResponse
-    // })
 }
 

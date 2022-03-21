@@ -15,18 +15,12 @@ stateElement.addEventListener("change", event => {
     let newParksArray = []
     getParks()
     .then(response => {
-        // console.log(response)
       for (let item of response.data){
-        //   console.log(event.target.value)
-        //   console.log(item.states)
             if (event.target.value === item.states){
                 newParksArray.push(item)            
             }
-            // console.log(newParksArray)
-            // return newParksArray
         }
         parksElement.innerHTML = makeParksDropdown(newParksArray)
-        // startPage()
     })
 })
 
