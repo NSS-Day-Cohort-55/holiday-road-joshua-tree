@@ -87,7 +87,7 @@ const startPage = () => {
         .then(response => {stateElement.innerHTML = makeStatesDropdown(response)})
     getStates()
         .then(response => {attractionElement.innerHTML = makeStatesDropdown(response)})
-        getStates()
+    getStates()
         .then(response => {eateriesElement.innerHTML = makeStatesDropdown(response)})
     header()
     footer()

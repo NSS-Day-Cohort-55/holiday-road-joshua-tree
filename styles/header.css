@@ -1,0 +1,15 @@
+header {
+    display: flex;
+    align-items: center;
+    border-bottom: solid 5px black;
+    margin-bottom: 2em;
+    background-color: #7dd958;
+    color: white
+}
+h1 {
+    margin-left: .5em;
+    font-family: 'Lora';
+}
+#logoPic {
+    height: 10em;
+}
