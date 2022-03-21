@@ -7,7 +7,7 @@ import { header } from "./injectPage/injectHeader.js";
 import { makeStatesDropdown } from "./states/statesHTMLgenerator.js"
 import { makeParksDropdown } from "./parks/parksHTMLgenerator.js"
 
-
+//get access to the elements on the DOM
 let stateElement = document.querySelector("#state--select")
 let parksElement = document.querySelector(".parks--dropdown--container")
 let attractionElement = document.querySelector("#attraction--state--select")
