@@ -24,6 +24,9 @@ stateElement.addEventListener("change", event => {
             }
         }
         parksElement.innerHTML = makeParksDropdown(newParksArray)
+        document.querySelector(".parks--display").innerHTML = `
+            <p></p>
+            `
     })
 })
 
