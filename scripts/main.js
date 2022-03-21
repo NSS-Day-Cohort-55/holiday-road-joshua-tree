@@ -13,23 +13,30 @@ let parksElement = document.querySelector(".parks--dropdown--container")
 let attractionElement = document.querySelector("#attraction--state--select")
 let eateriesElement = document.querySelector("#eateries--state--select")
 
+let selectedState = ''
+let selectedPark = ''
+let selectedAttraction = ''
+let selectedEatery = ''
 
 stateElement.addEventListener("change", event => {
     let newParksArray = []
     getParks()
     .then(response => {
-      for (let item of response.data){
+        for (let item of response.data){
             if (event.target.value === item.states){
-                newParksArray.push(item)            
+                newParksArray.push(item)  
+                selectedState = event.target.value
             }
         }
+        //make it display nothing until user makes a selection
         parksElement.innerHTML = makeParksDropdown(newParksArray)
-        document.querySelector(".parks--display").innerHTML = `
-            <p></p>
-            `
+    })
+    parksElement.addEventListener("click", event => {
+        let parkSelection = document.querySelector(".parks--display")
+        parkSelection.innerHTML = `<p>${event.target.value}</p>`
+        selectedPark = event.target.value
     })
 })
-
 
 
 attractionElement.addEventListener("change", event => {
@@ -38,7 +45,8 @@ attractionElement.addEventListener("change", event => {
             if (event.target.value === item.state) {
                 document.querySelector(".attractions--display").innerHTML = `
                     <p> ${item.name} </p>
-                    `
+                   `
+                selectedAttraction = item.name
             }
         }
     })
@@ -51,9 +59,26 @@ eateriesElement.addEventListener("change", event => {
                 document.querySelector(".eateries--display").innerHTML = `
                     <p> ${item.businessName} </p>
                     `
+                selectedEatery = item.businessName
             }
         }
     })
+})
+
+const submitButton = document.querySelector("#submit--button")
+submitButton.addEventListener("click", event => {
+    const state = selectedState
+    const park = selectedPark
+    const attraction = selectedAttraction
+    const eatery = selectedEatery
+
+    const tripObject = {
+        destState: state,
+        park: park,
+        attraction: attraction,
+		eatery: eatery
+    }
+    console.log(tripObject)
 })
 
 
