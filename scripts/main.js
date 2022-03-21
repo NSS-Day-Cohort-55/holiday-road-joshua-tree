@@ -4,12 +4,15 @@ import { getStates } from "./states/statesDataManager.js";
 import { getEateries } from "./eateries/EateryDataManager.js"
 import { footer } from "./injectPage/injectFooter.js";
 import { header } from "./injectPage/injectHeader.js";
+import { makeStatesDropdown } from "./states/statesHTMLgenerator.js"
 
 
 
+let stateElement = document.querySelector("#state--select")
 
 
-
+getStates()
+    .then(response => {stateElement.innerHTML = makeStatesDropdown(response)})
 
 
 const startPage = () => {
