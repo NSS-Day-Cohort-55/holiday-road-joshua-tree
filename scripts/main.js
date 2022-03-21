@@ -19,7 +19,6 @@ stateElement.addEventListener("change", event => {
     let newParksArray = []
     getParks()  //returns an object that has a data property that contains the 465 arrays (parks).
     .then(response => {
-      console.log(response)
         for (let item of response.data){
             if (event.target.value === item.states){
                 newParksArray.push(item)            
@@ -29,7 +28,7 @@ stateElement.addEventListener("change", event => {
         parksElement.innerHTML = makeParksDropdown(newParksArray)
         document.querySelector(".parks--display").innerHTML = `
             <p></p>
-            `
+            ` //we will need to change above lines to trip preview class, but also how are we identifying the value?
     })
 })
 
@@ -50,8 +49,8 @@ attractionElement.addEventListener("change", event => {
 eateriesElement.addEventListener("change", event => {
     getEateries().then(response => {
         for (let item of response) {
-            if (event.target.value === item.state) {
-                document.querySelector(".eateries--display").innerHTML = `
+            if (event.target.value === item.state) {  //just need to switch line 53 to the trip preview eatery sections class. 
+                document.querySelector(".eateries--display").innerHTML = ` 
                     <p> ${item.businessName} </p>
                     `
             }
@@ -61,6 +60,7 @@ eateriesElement.addEventListener("change", event => {
 
 
 const startPage = () => {
+    //inject the 3 state dropdown lists onto the DOM;
     getStates()
         .then(response => {stateElement.innerHTML = makeStatesDropdown(response)})
     getStates()

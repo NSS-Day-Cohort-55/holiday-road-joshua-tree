@@ -5,5 +5,6 @@ export const getStates = () => {
     .then(response => response.json())
     .then(parsedResponse => {
         return parsedResponse
+        
     })
 }
