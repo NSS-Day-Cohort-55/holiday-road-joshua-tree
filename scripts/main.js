@@ -34,8 +34,11 @@ stateElement.addEventListener("change", event => {
     })
     parksElement.addEventListener("click", event => {
         let parkSelection = document.querySelector(".parks--display")
-        parkSelection.innerHTML = `<p>${event.target.value}</p>` //we will just need to make this the trip preview target instead.
+        parkSelection.innerHTML = `<h3>${event.target.value}</h3>
+        <button type="button" id="parks--detail--button" class="detail--button">Details Button</button>
+        `
         selectedPark = event.target.value
+        //GENERATE PARKS DETAIL BUTTON FUNCTION HERE.
     })
 })
 
@@ -45,8 +48,9 @@ attractionElement.addEventListener("change", event => {
         for (let item of response) {
             if (event.target.value === item.state) {
                 document.querySelector(".attractions--display").innerHTML = `
-                    <p> ${item.name} </p>
-                   `                                  //we will just need to make this the trip preview target instead.
+                    <h3> ${item.name} </h3>
+                    <button type="button" id="attractions--detail--button" class="detail--button">Details Button</button>
+                   `                                
                 selectedAttraction = item.name
             }
         }
@@ -58,8 +62,9 @@ eateriesElement.addEventListener("change", event => {
         for (let item of response) {
             if (event.target.value === item.state) {
                 document.querySelector(".eateries--display").innerHTML = `
-                    <p> ${item.businessName} </p>
-                    `                                 //we will just need to make this the trip preview target instead.
+                    <h3> ${item.businessName} </h3>
+                    <button type="button" id="eateries--detail--button" class="detail--button">Details Button</button>
+                    `                                 
                 selectedEatery = item.businessName
             }
         }
