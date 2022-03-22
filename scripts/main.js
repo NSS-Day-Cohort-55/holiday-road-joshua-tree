@@ -6,6 +6,7 @@ import { footer } from "./injectPage/injectFooter.js";
 import { header } from "./injectPage/injectHeader.js";
 import { makeStatesDropdown } from "./states/statesHTMLgenerator.js"
 import { makeParksDropdown } from "./parks/parksHTMLgenerator.js"
+import { createTrip } from "./trips/tripsDataManager.js"
 
 
 let stateElement = document.querySelector("#state--select")
@@ -33,7 +34,7 @@ stateElement.addEventListener("change", event => {
     })
     parksElement.addEventListener("click", event => {
         let parkSelection = document.querySelector(".parks--display")
-        parkSelection.innerHTML = `<p>${event.target.value}</p>`
+        parkSelection.innerHTML = `<p>${event.target.value}</p>` //we will just need to make this the trip preview target instead.
         selectedPark = event.target.value
     })
 })
@@ -45,7 +46,7 @@ attractionElement.addEventListener("change", event => {
             if (event.target.value === item.state) {
                 document.querySelector(".attractions--display").innerHTML = `
                     <p> ${item.name} </p>
-                   `
+                   `                                  //we will just need to make this the trip preview target instead.
                 selectedAttraction = item.name
             }
         }
@@ -58,7 +59,7 @@ eateriesElement.addEventListener("change", event => {
             if (event.target.value === item.state) {
                 document.querySelector(".eateries--display").innerHTML = `
                     <p> ${item.businessName} </p>
-                    `
+                    `                                 //we will just need to make this the trip preview target instead.
                 selectedEatery = item.businessName
             }
         }
@@ -78,7 +79,8 @@ submitButton.addEventListener("click", event => {
         attraction: attraction,
 		eatery: eatery
     }
-    console.log(tripObject)
+    // Call the function that POSTS an object to the Database, and pass in the TripObject. 
+    createTrip(tripObject);
 })
 
 
