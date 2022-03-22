@@ -6,8 +6,7 @@ import { footer } from "./injectPage/injectFooter.js";
 import { header } from "./injectPage/injectHeader.js";
 import { makeStatesDropdown } from "./states/statesHTMLgenerator.js"
 import { makeParksDropdown } from "./parks/parksHTMLgenerator.js"
-import { createTrip } from "./trips/tripsDataManager.js"
-
+import { createTrip } from "./trips/tripsDataManager.js";
 
 let stateElement = document.querySelector("#state--select")
 let parksElement = document.querySelector(".parks--dropdown--container")
@@ -20,13 +19,14 @@ let selectedAttraction = ''
 let selectedEatery = ''
 
 stateElement.addEventListener("change", event => {
+    selectedState = event.target.value
     let newParksArray = []
     getParks()
     .then(response => {
         for (let item of response.data){
             if (event.target.value === item.states){
-                newParksArray.push(item)  
-                selectedState = event.target.value
+                newParksArray.push(item) 
+ 
             }
         }
         //make it display nothing until user makes a selection
