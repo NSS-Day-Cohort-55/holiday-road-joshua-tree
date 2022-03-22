@@ -25,7 +25,6 @@ let selectedEatery = ''
 
 stateElement.addEventListener("change", event => {
     let newParksArray = []
-    console.log(event)
     getParks()
     .then(response => {
         for (let item of response.data){
@@ -53,11 +52,15 @@ parksElement.addEventListener("change", event => {
     `   
 }) 
 
+const clearWeather = () => {
+    weatherElement.innerHTML = ""
+}
 
 //event listener for populating weather
 parksElement.addEventListener("change", event =>{
     getWeather(selectedPark)
     .then(response => {
+        clearWeather()
         let counter = 1
         for (let item of response.list){
             if(counter < 6){
@@ -135,19 +138,19 @@ tripContainerElement.addEventListener("click", event => {
     let eaterySelection = document.querySelector("#populate--eatery--details")
 
     if (event.target.id === "parks--detail--button") {
-        parkSelection.innerHTML += `
+        parkSelection.innerHTML = `
         Description: ${selectedPark.description}
         `;
         
     }
     else if (event.target.id === "attractions--detail--button") {
-        attractionSelection.innerHTML += `
+        attractionSelection.innerHTML = `
         Description: ${selectedAttraction.description}
         
         `;        //add address to line above 
     }
     else if (event.target.id === "eateries--detail--button") {
-        eaterySelection.innerHTML += `
+        eaterySelection.innerHTML = `
         Description: ${selectedEatery.description}
     
         `;    //add amenity stufff to line above 
