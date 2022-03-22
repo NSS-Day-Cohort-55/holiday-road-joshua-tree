@@ -7,6 +7,7 @@ import { header } from "./injectPage/injectHeader.js";
 import { makeStatesDropdown } from "./states/statesHTMLgenerator.js"
 import { makeParksDropdown } from "./parks/parksHTMLgenerator.js"
 import { createTrip } from "./trips/tripsDataManager.js";
+import { getWeather } from "./weather/WeatherDataManager.js"
 
 let stateElement = document.querySelector("#state--select")
 let parksElement = document.querySelector(".parks--dropdown--container")
@@ -19,14 +20,15 @@ let selectedAttraction = ''
 let selectedEatery = ''
 
 stateElement.addEventListener("change", event => {
-    selectedState = event.target.value
     let newParksArray = []
+    console.log(event)
     getParks()
     .then(response => {
         for (let item of response.data){
             if (event.target.value === item.states){
                 newParksArray.push(item) 
- 
+                selectedState = event.target.value
+                selectedPark = item
             }
         }
         //make it display nothing until user makes a selection
@@ -37,7 +39,7 @@ stateElement.addEventListener("change", event => {
         parkSelection.innerHTML = `<h3>${event.target.value}</h3>
         <button type="button" id="parks--detail--button" class="detail--button">Details Button</button>
         `
-        selectedPark = event.target.value
+        
         //GENERATE PARKS DETAIL BUTTON FUNCTION HERE.
     })
 })
@@ -51,7 +53,7 @@ attractionElement.addEventListener("change", event => {
                     <h3> ${item.name} </h3>
                     <button type="button" id="attractions--detail--button" class="detail--button">Details Button</button>
                    `                                
-                selectedAttraction = item.name
+                selectedAttraction = item
             }
         }
     })
@@ -65,7 +67,7 @@ eateriesElement.addEventListener("change", event => {
                     <h3> ${item.businessName} </h3>
                     <button type="button" id="eateries--detail--button" class="detail--button">Details Button</button>
                     `                                 
-                selectedEatery = item.businessName
+                selectedEatery = item
             }
         }
     })
