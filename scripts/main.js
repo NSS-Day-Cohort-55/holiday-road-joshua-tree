@@ -52,11 +52,15 @@ parksElement.addEventListener("change", event => {
     `   
 }) 
 
+const clearWeather = () => {
+    weatherElement.innerHTML = ""
+}
 
 //event listener for populating weather
 parksElement.addEventListener("change", event =>{
     getWeather(selectedPark)
     .then(response => {
+        clearWeather()
         let counter = 1
         for (let item of response.list){
             if(counter < 6){
