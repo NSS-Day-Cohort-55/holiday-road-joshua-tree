@@ -6,12 +6,16 @@ import { footer } from "./injectPage/injectFooter.js";
 import { header } from "./injectPage/injectHeader.js";
 import { makeStatesDropdown } from "./states/statesHTMLgenerator.js"
 import { makeParksDropdown } from "./parks/parksHTMLgenerator.js"
+
+import { getWeather } from "./weather/WeatherDataManager.js"
 import { createTrip, deleteTrip } from "./trips/tripsDataManager.js"
 
 let stateElement = document.querySelector("#state--select")
 let parksElement = document.querySelector(".parks--dropdown--container")
 let attractionElement = document.querySelector("#attraction--state--select")
 let eateriesElement = document.querySelector("#eateries--state--select")
+let weatherElement = document.querySelector(".forecast--trips--container")
+
 
 let selectedState = ''
 let selectedPark = ''
@@ -20,11 +24,12 @@ let selectedEatery = ''
 
 stateElement.addEventListener("change", event => {
     let newParksArray = []
+    console.log(event)
     getParks()
     .then(response => {
         for (let item of response.data){
             if (event.target.value === item.states){
-                newParksArray.push(item)  
+                newParksArray.push(item) 
                 selectedState = event.target.value
                 //temp placeholder for selectedEater = item
                 selectedPark = item;
@@ -35,16 +40,39 @@ stateElement.addEventListener("change", event => {
         //make it display nothing until user makes a selection
         parksElement.innerHTML = makeParksDropdown(newParksArray)
     })
-    parksElement.addEventListener("click", event => {
-        let parkSelection = document.querySelector(".parks--display")
-        parkSelection.innerHTML = `<h3>${event.target.value}</h3>
-        <p id="populate--parks--details"> </p>
-        <button type="button" id="parks--detail--button" class="detail--button">Details Button</button>
-        `
-        
-        // selectedPark = event.target.value
-        //GENERATE PARKS DETAIL BUTTON FUNCTION HERE.
-    })
+    // selectedPark = event.target.value
+    //GENERATE PARKS DETAIL BUTTON FUNCTION HERE.
+})
+
+parksElement.addEventListener("change", event => {
+    let parkSelection = document.querySelector(".parks--display")
+    parkSelection.innerHTML = `<h3>${event.target.value}</h3>
+    <p id="populate--parks--details"> </p>
+    <button type="button" id="parks--detail--button" class="detail--button">Details Button</button>
+    `   
+}) 
+
+
+//event listener for populating weather
+parksElement.addEventListener("change", event =>{
+    getWeather(selectedPark)
+    .then(response => {
+        let counter = 1
+        for (let item of response.list){
+            if(counter < 6){
+                weatherElement.innerHTML += `
+                <h4>
+                Day ${counter}
+                </h4>
+                <div class="day--forecast--display">
+                    Forecast: ${item.weather[0].main}
+                    High: ${item.main.temp_max}&deg;F
+                    Low: ${item.main.temp_min}&deg;F
+                </div>`
+                counter++;
+            }
+        }
+    })   
 })
 
 
