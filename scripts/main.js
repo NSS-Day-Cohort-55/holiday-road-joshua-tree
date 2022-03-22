@@ -6,7 +6,7 @@ import { footer } from "./injectPage/injectFooter.js";
 import { header } from "./injectPage/injectHeader.js";
 import { makeStatesDropdown } from "./states/statesHTMLgenerator.js"
 import { makeParksDropdown } from "./parks/parksHTMLgenerator.js"
-import { createTrip } from "./trips/tripsDataManager.js"
+import { createTrip, deleteTrip } from "./trips/tripsDataManager.js"
 
 let stateElement = document.querySelector("#state--select")
 let parksElement = document.querySelector(".parks--dropdown--container")
@@ -26,6 +26,10 @@ stateElement.addEventListener("change", event => {
             if (event.target.value === item.states){
                 newParksArray.push(item)  
                 selectedState = event.target.value
+                //temp placeholder for selectedEater = item
+                selectedPark = item;
+                // selectedParkDescription = item.description; //added this to try and store park description.
+                
             }
         }
         //make it display nothing until user makes a selection
@@ -34,9 +38,11 @@ stateElement.addEventListener("change", event => {
     parksElement.addEventListener("click", event => {
         let parkSelection = document.querySelector(".parks--display")
         parkSelection.innerHTML = `<h3>${event.target.value}</h3>
+        <p id="populate--parks--details"> </p>
         <button type="button" id="parks--detail--button" class="detail--button">Details Button</button>
         `
-        selectedPark = event.target.value
+        
+        // selectedPark = event.target.value
         //GENERATE PARKS DETAIL BUTTON FUNCTION HERE.
     })
 })
@@ -48,9 +54,10 @@ attractionElement.addEventListener("change", event => {
             if (event.target.value === item.state) {
                 document.querySelector(".attractions--display").innerHTML = `
                     <h3> ${item.name} </h3>
+                    <p id="populate--attractions--details"> </p>
                     <button type="button" id="attractions--detail--button" class="detail--button">Details Button</button>
                    `                                
-                selectedAttraction = item.name
+                selectedAttraction = item
             }
         }
     })
@@ -62,9 +69,11 @@ eateriesElement.addEventListener("change", event => {
             if (event.target.value === item.state) {
                 document.querySelector(".eateries--display").innerHTML = `
                     <h3> ${item.businessName} </h3>
+                    <p id="populate--eatery--details"> </p>
                     <button type="button" id="eateries--detail--button" class="detail--button">Details Button</button>
                     `                                 
-                selectedEatery = item.businessName
+                    selectedEatery = item;
+                
             }
         }
     })
@@ -86,6 +95,36 @@ submitButton.addEventListener("click", event => {
     // Call the function that POSTS an object to the Database, and pass in the TripObject. 
     createTrip(tripObject);
 })
+
+
+// adding event listener to Detail buttons. 
+const tripContainerElement = document.querySelector(".trip--preview--container")
+
+tripContainerElement.addEventListener("click", event => {
+    let parkSelection = document.querySelector("#populate--parks--details")
+    let attractionSelection = document.querySelector("#populate--attractions--details")
+    let eaterySelection = document.querySelector("#populate--eatery--details")
+
+    if (event.target.id === "parks--detail--button") {
+        parkSelection.innerHTML += `
+        Description: ${selectedPark.description}
+        `;
+        
+    }
+    else if (event.target.id === "attractions--detail--button") {
+        attractionSelection.innerHTML += `
+        Description: ${selectedAttraction.description}
+        
+        `;        //add address to line above 
+    }
+    else if (event.target.id === "eateries--detail--button") {
+        eaterySelection.innerHTML += `
+        Description: ${selectedEatery.description}
+    
+        `;    //add amenity stufff to line above 
+    }
+})
+
 
 
 const startPage = () => {
