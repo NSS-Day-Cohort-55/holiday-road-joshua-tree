@@ -7,11 +7,17 @@ import { header } from "./injectPage/injectHeader.js";
 import { makeStatesDropdown } from "./states/statesHTMLgenerator.js"
 import { makeParksDropdown } from "./parks/parksHTMLgenerator.js"
 
+import { makeAttractionsDropdown } from "./attractions/attractionsHTMLgenerator.js"
+import { makeEateriesDropdown } from "./eateries/eateryHTMLgenerator.js"
+
 
 let stateElement = document.querySelector("#state--select")
 let parksElement = document.querySelector(".parks--dropdown--container")
 let attractionElement = document.querySelector("#attraction--state--select")
 let eateriesElement = document.querySelector("#eateries--state--select")
+
+let attractionDropdown = document.querySelector("#attractions--dropdown")
+let eateriesDropdown = document.querySelector("#eateries--dropdown")
 
 let selectedState = ''
 let selectedPark = ''
@@ -91,6 +97,11 @@ const startPage = () => {
         .then(response => {eateriesElement.innerHTML = makeStatesDropdown(response)})
     header()
     footer()
+
+    getAttractions()
+        .then(response => {attractionDropdown.innerHTML = makeAttractionsDropdown(response)})
+    getEateries()
+    .then(response => {eateriesDropdown.innerHTML = makeEateriesDropdown(response)})
 }  
 
 startPage()
