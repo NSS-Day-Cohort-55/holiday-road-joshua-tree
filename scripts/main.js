@@ -23,6 +23,12 @@ let selectedPark = ''
 let selectedAttraction = ''
 let selectedEatery = ''
 
+let parkButtonBoolean = false;
+let attractionButtonBoolean = false;
+let eateryButtonBoolean = false;
+
+
+
 stateElement.addEventListener("change", event => {
     let newParksArray = []
     console.log(event)
@@ -34,6 +40,8 @@ stateElement.addEventListener("change", event => {
                 selectedState = event.target.value
                 //temp placeholder for selectedEater = item
                 selectedPark = item;
+                parkButtonBoolean = true;
+                checkIfTrue();
                 // selectedParkDescription = item.description; //added this to try and store park description.
                 
             }
@@ -87,6 +95,8 @@ attractionElement.addEventListener("change", event => {
                     <button type="button" id="attractions--detail--button" class="detail--button">Details Button</button>
                    `                                
                 selectedAttraction = item
+                attractionButtonBoolean = true;
+                checkIfTrue();
             }
         }
     })
@@ -102,28 +112,39 @@ eateriesElement.addEventListener("change", event => {
                     <button type="button" id="eateries--detail--button" class="detail--button">Details Button</button>
                     `                                 
                     selectedEatery = item;
+                    eateryButtonBoolean = true;
+                    checkIfTrue();
                 
             }
         }
     })
 })
 
+
+
 const submitButton = document.querySelector("#submit--button")
+
+const checkIfTrue = () => {
+    if (parkButtonBoolean === true && attractionButtonBoolean === true && eateryButtonBoolean === true) {
+        submitButton.disabled = false;
+    }   
+}
+
 submitButton.addEventListener("click", event => {
     const state = selectedState
-    const park = selectedPark
-    const attraction = selectedAttraction
-    const eatery = selectedEatery
-
-    const tripObject = {
-        destState: state,
-        park: park,
-        attraction: attraction,
-		eatery: eatery
-    }
-    // Call the function that POSTS an object to the Database, and pass in the TripObject. 
-    createTrip(tripObject);
-})
+        const park = selectedPark
+        const attraction = selectedAttraction
+        const eatery = selectedEatery
+    
+        const tripObject = {
+            destState: state,
+            park: park,
+            attraction: attraction,
+            eatery: eatery
+        }
+        // Call the function that POSTS an object to the Database, and pass in the TripObject. 
+        createTrip(tripObject);
+    });
 
 
 // adding event listener to Detail buttons. 
@@ -135,19 +156,21 @@ tripContainerElement.addEventListener("click", event => {
     let eaterySelection = document.querySelector("#populate--eatery--details")
 
     if (event.target.id === "parks--detail--button") {
-        parkSelection.innerHTML += `
-        Description: ${selectedPark.description}
-        `;
+            parkSelection.innerHTML = `
+            Description: ${selectedPark.description}
+            `;
+        
+        //if parkSelection.innerHTML is blank //come back here and do this later!
         
     }
     else if (event.target.id === "attractions--detail--button") {
-        attractionSelection.innerHTML += `
+        attractionSelection.innerHTML = `
         Description: ${selectedAttraction.description}
         
         `;        //add address to line above 
     }
     else if (event.target.id === "eateries--detail--button") {
-        eaterySelection.innerHTML += `
+        eaterySelection.innerHTML = `
         Description: ${selectedEatery.description}
     
         `;    //add amenity stufff to line above 
