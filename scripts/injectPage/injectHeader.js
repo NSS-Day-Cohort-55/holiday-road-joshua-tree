@@ -5,6 +5,6 @@ export const header = () => {
         
             <img id="logoPic" src="images/JTLogo3.png" alt="not the white tree of Gondor, but still a really cool tree">
         
-       <h1> Let's Plan A Trip! </h1>
+       <h1> Tripify </h1>
         `
 }
