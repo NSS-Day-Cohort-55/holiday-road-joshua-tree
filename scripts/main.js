@@ -6,6 +6,7 @@ import { footer } from "./injectPage/injectFooter.js";
 import { header } from "./injectPage/injectHeader.js";
 import { makeStatesDropdown } from "./states/statesHTMLgenerator.js"
 import { makeParksDropdown } from "./parks/parksHTMLgenerator.js"
+import { saveTrip } from "./trips/tripsHTMLGenerator.js";
 
 import { getWeather } from "./weather/WeatherDataManager.js"
 import { createTrip, deleteTrip } from "./trips/tripsDataManager.js"
@@ -15,14 +16,14 @@ let stateElement = document.querySelector("#state--select")
 let parksElement = document.querySelector(".parks--dropdown--container")
 let attractionElement = document.querySelector("#attraction--state--select")
 let eateriesElement = document.querySelector("#eateries--state--select")
-let weatherElement = document.querySelector(".forecast--trips--container")
-
+let weatherElement = document.querySelector(".forecast--container")
+let savedTripElement = document.querySelector(".saved--trips--container")
 
 let selectedState = ''
 let selectedPark = ''
 let selectedAttraction = ''
 let selectedEatery = ''
-
+let savedTripCounter = 0
 let parkButtonBoolean = false;
 let attractionButtonBoolean = false;
 let eateryButtonBoolean = false;
@@ -57,7 +58,7 @@ parksElement.addEventListener("change", event => {
     let parkSelection = document.querySelector(".parks--display")
     parkSelection.innerHTML = `<h3>${event.target.value}</h3>
     <p id="populate--parks--details"> </p>
-    <button type="button" id="parks--detail--button" class="detail--button">Details Button</button>
+    <button type="button" id="parks--detail--button" class="detail--button">Details</button>
     `   
 }) 
 
@@ -73,10 +74,13 @@ parksElement.addEventListener("change", event =>{
                 <h4>
                 Day ${counter}
                 </h4>
-                <div class="day--forecast--display">
+                <div class="day--forecast--display--${counter}">
                     Forecast: ${item.weather[0].main}
+                    <br>
                     High: ${item.main.temp_max}&deg;F
+                    <br>
                     Low: ${item.main.temp_min}&deg;F
+                    <br>
                 </div>`
                 counter++;
             }
@@ -92,7 +96,7 @@ attractionElement.addEventListener("change", event => {
                 document.querySelector(".attractions--display").innerHTML = `
                     <h3> ${item.name} </h3>
                     <p id="populate--attractions--details"> </p>
-                    <button type="button" id="attractions--detail--button" class="detail--button">Details Button</button>
+                    <button type="button" id="attractions--detail--button" class="detail--button">Details</button>
                    `                                
                 selectedAttraction = item
                 attractionButtonBoolean = true;
@@ -109,7 +113,7 @@ eateriesElement.addEventListener("change", event => {
                 document.querySelector(".eateries--display").innerHTML = `
                     <h3> ${item.businessName} </h3>
                     <p id="populate--eatery--details"> </p>
-                    <button type="button" id="eateries--detail--button" class="detail--button">Details Button</button>
+                    <button type="button" id="eateries--detail--button" class="detail--button">Details</button>
                     `                                 
                     selectedEatery = item;
                     eateryButtonBoolean = true;
@@ -130,6 +134,8 @@ const checkIfTrue = () => {
     }   
 }
 
+
+
 submitButton.addEventListener("click", event => {
     const state = selectedState
         const park = selectedPark
@@ -144,6 +150,9 @@ submitButton.addEventListener("click", event => {
         }
         // Call the function that POSTS an object to the Database, and pass in the TripObject. 
         createTrip(tripObject);
+        console.log(tripObject)
+        savedTripCounter++
+        savedTripElement.innerHTML += `<h3>Trip ${savedTripCounter}</h3> ${saveTrip(tripObject)}`;
     });
 
 
