@@ -74,7 +74,7 @@ parksElement.addEventListener("change", event =>{
             if(counter < 6){
                 weatherElement.innerHTML += `
                 <h4>
-                Day ${counter}
+                ${item.dt_txt.split(" ")[0]}
                 </h4>
                 <div class="day--forecast--display">
                     Forecast: ${item.weather[0].main}
@@ -147,6 +147,7 @@ submitButton.addEventListener("click", event => {
         }
         // Call the function that POSTS an object to the Database, and pass in the TripObject. 
         createTrip(tripObject);
+        console.log(tripObject)
     });
 
 
