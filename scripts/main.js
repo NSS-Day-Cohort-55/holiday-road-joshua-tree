@@ -71,10 +71,10 @@ parksElement.addEventListener("change", event =>{
         for (let item of response.list){
             if(counter < 6){
                 weatherElement.innerHTML += `
-                <h4>
-                Day ${counter}
-                </h4>
                 <div class="day--forecast--display--${counter}">
+                    <h4>
+                    Day ${counter}
+                    </h4>
                     Forecast: ${item.weather[0].main}
                     <br>
                     High: ${item.main.temp_max}&deg;F
