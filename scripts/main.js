@@ -82,13 +82,13 @@ parksElement.addEventListener("change", event =>{
                 <div class="forecast--display" id="day--forecast--display--${counter}">`
                 let weatherIdEl = document.getElementById(`day--forecast--display--${counter}`)
                     if (item.weather[0].main === "Rain"){
-                        weatherIdEl.style.backgroundImage = url('/images/rain.webp')
+                        weatherIdEl.style.backgroundImage = "url('/images/rain.webp')"
                     } else if (item.weather[0].main === "Clouds"){
-                        weatherIdEl.style.backgroundImage = url('/images/cloudy.webp')
+                        weatherIdEl.style.backgroundImage = "url('/images/cloudy.webp')"
                     } else if (item.weather[0].main === "Clear"){
-                        weatherIdEl.style.backgroundImage = url('/images/sunny.webp')
+                        weatherIdEl.style.backgroundImage = "url('/images/sunny.webp')"
                     } else if (item.weather[0].main === "Snow"){
-                        weatherIdEl.style.backgroundImage = url('/images/snow.webp')
+                        weatherIdEl.style.backgroundImage = "url('/images/snow.webp')"
                     }
                   weatherElement.innerHTML +=  `Forecast: ${item.weather[0].main}
                     <br>
