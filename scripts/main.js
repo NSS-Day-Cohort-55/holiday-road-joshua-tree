@@ -9,6 +9,7 @@ import { makeParksDropdown } from "./parks/parksHTMLgenerator.js"
 import { saveTrip } from "./trips/tripsHTMLGenerator.js";
 import { getWeather } from "./weather/WeatherDataManager.js"
 import { createTrip, deleteTrip } from "./trips/tripsDataManager.js"
+import { formatDate } from "./date.js"
 
 let stateElement = document.querySelector("#state--select")
 let parksElement = document.querySelector(".parks--dropdown--container")
@@ -30,18 +31,15 @@ let eateryButtonBoolean = false;
 
 stateElement.addEventListener("change", event => {
     let newParksArray = []
-    console.log(event)
     getParks()
     .then(response => {
         for (let item of response.data){
             if (event.target.value === item.states){
                 newParksArray.push(item) 
                 selectedState = event.target.value
-                //temp placeholder for selectedEater = item
                 selectedPark = item;
                 parkButtonBoolean = true;
                 checkIfTrue();
-                // selectedParkDescription = item.description; //added this to try and store park description.
                 
             }
         }
@@ -64,13 +62,6 @@ const clearWeather = () => {
     weatherElement.innerHTML = ""
 }
 
-const formatDate = (string) => {
-    let year = string.split("-")[0]
-    let month = string.split("-")[1]
-    let day = string.split("-")[2]
-    
-    return `${month}-${day}`
-}
 
 //event listener for populating weather
 parksElement.addEventListener("change", event =>{
@@ -78,11 +69,13 @@ parksElement.addEventListener("change", event =>{
     .then(response => {
         clearWeather()
         let counter = 1
-        for (let item of response.list){
-            if(counter < 6){
+        let dateArray = [];
+        for (let item of response.list){ 
+            if(counter < 6) {
+
                 weatherElement.innerHTML += `
                 <h4>
-                ${formatDate(item.dt_txt.split(" ")[0])}
+                ${formatDate(item.dt_txt)}
                 </h4>
                 <div class="day--forecast--display--${counter}">
                     Forecast: ${item.weather[0].main}
@@ -178,9 +171,6 @@ tripContainerElement.addEventListener("click", event => {
         parkSelection.innerHTML = `
         <strong>Description:</strong> ${selectedPark.description}
         `;
-        
-        //if parkSelection.innerHTML is blank //come back here and do this later!
-        
     }
     else if (event.target.id === "attractions--detail--button") {
         attractionSelection.innerHTML = `

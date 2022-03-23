@@ -7,7 +7,7 @@ export const makeParksDropdown = (objArray) => {
     `
     for (let object of objArray) {
         parksBlock += `
-        <option class="park--input" value="${object.fullName}">${object.fullName}</option>
+        <option class="park--input" value="${object.fullName}">${object.fullName}</option> 
         `
     }
     parksBlock+= `
