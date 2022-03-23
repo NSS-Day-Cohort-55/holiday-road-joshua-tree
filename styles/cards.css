@@ -4,7 +4,8 @@
     flex: 2;
     margin-left: 1em;
     border: solid 5px #7dd958;
-    background-color: #7dd958;
+    background: rgb(88,193,217);
+    background: radial-gradient(circle, rgb(96 202 149) 35%, rgba(125,217,88,1) 100%);
     color: black;
 
 }
@@ -14,7 +15,9 @@
 .trip--preview--container{
     border: solid #7dd958 5px;
     /* padding: 1em; */
-    background-color: #7dd958;
+    /* background-color: #7dd958; */
+    background: rgb(88,193,217);
+    background: linear-gradient(236deg, rgba(88,193,217,1) 0%, rgba(125,217,88,1) 49%); 
     padding-top: 0;
     margin: 0px 1em 0px 1em;
     margin-top: 0%;
@@ -27,7 +30,7 @@
 .trip--preview--title{
     padding-top: 0;
     margin-top: 0;
-    background-color: #7dd958;
+    /* background-color: #7dd958; */
     color: black;
 }
 .parks--preview{
