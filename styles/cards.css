@@ -7,7 +7,25 @@
     background: rgb(88,193,217);
     background: radial-gradient(circle, rgb(96 202 149) 35%, rgba(125,217,88,1) 100%);
     color: black;
+    max-height: 40em;
 
+}
+    /* TODO margin bottom on all dropdowns!!!! You asshole */
+
+.states--dropdown--container{
+    margin-bottom: 0.5em;
+}
+
+.parks--dropdown--container{
+    margin-bottom: 0.5em;
+}
+
+.attractions--dropdown--container{
+    margin-bottom: 0.5em;
+}
+
+.eateries--dropdown--container{
+    margin-bottom: 0.5em;
 }
 /* .states--dropdown--container{ */
 
@@ -66,8 +84,18 @@
 .forecast--container {
     display: flex;
     flex-direction: column;
-    background-color: #7dd958;
+    background-color: #35b7d1;
+    padding: 1em;
 }
-
-
+.forecast--display{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    text-shadow: 0.04em 0.05em black;
+    padding-left: .5em;
+}
+.saved--trip ul{
+    list-style-type: none;
+}
 

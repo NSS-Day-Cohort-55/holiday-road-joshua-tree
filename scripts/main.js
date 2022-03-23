@@ -76,19 +76,31 @@ parksElement.addEventListener("change", event => {
                             <div class="forecast--display" id="day--forecast--display--${counter}">`
                             let weatherIdEl = document.getElementById(`day--forecast--display--${counter}`)
                                 if (item.weather[0].main === "Rain"){
-                                    weatherIdEl.style.backgroundImage = "url('/images/rain.webp')"
+                                    weatherIdEl.style.backgroundImage = `linear-gradient(
+                                        rgba(0, 0, 0, 0.5),
+                                        rgba(0, 0, 0, 0.5)
+                                      ), url('/images/rain.webp')`
                                 } else if (item.weather[0].main === "Clouds"){
-                                    weatherIdEl.style.backgroundImage = "url('/images/cloudy.webp')"
+                                    weatherIdEl.style.backgroundImage = `linear-gradient(
+                                        rgba(0, 0, 0, 0.5),
+                                        rgba(0, 0, 0, 0.5)
+                                      ), url('/images/cloudy.webp')`
                                 } else if (item.weather[0].main === "Clear"){
-                                    weatherIdEl.style.backgroundImage = "url('/images/sunny.webp')"
+                                    weatherIdEl.style.backgroundImage = `linear-gradient(
+                                        rgba(0, 0, 0, 0.5),
+                                        rgba(0, 0, 0, 0.5)
+                                      ), url('/images/sunny.webp')`
                                 } else if (item.weather[0].main === "Snow"){
-                                    weatherIdEl.style.backgroundImage = "url('/images/snow.webp')"
+                                    weatherIdEl.style.backgroundImage = `linear-gradient(
+                                        rgba(0, 0, 0, 0.5),
+                                        rgba(0, 0, 0, 0.5)
+                                      ), url('/images/snow.webp')`
                                 }
-                              weatherElement.innerHTML+= `Forecast: ${item.weather[0].main}
+                              document.querySelector(`#day--forecast--display--${counter}`).innerHTML+= `<p>Forecast: ${item.weather[0].main}</p>
                                 <br>
-                                High: ${item.main.temp_max}&deg;F
+                                <p>High: ${item.main.temp_max}&deg;F</p>
                                 <br>
-                                Low: ${item.main.temp_min}&deg;F
+                                <p>Low: ${item.main.temp_min}&deg;F</p>
                                 <br>
                             </div>`
                             counter++;
