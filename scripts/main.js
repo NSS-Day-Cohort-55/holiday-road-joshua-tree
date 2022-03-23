@@ -91,7 +91,7 @@ parksElement.addEventListener("change", event =>{
                     } else if (item.weather[0].main === "Snow"){
                         weatherIdEl.style.backgroundImage = url('/images/snow.webp')
                     }
-                    `Forecast: ${item.weather[0].main}
+                  weatherElement.innerHTML +=  `Forecast: ${item.weather[0].main}
                     <br>
                     High: ${item.main.temp_max}&deg;F
                     <br>
