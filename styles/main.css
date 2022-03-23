@@ -1,6 +1,7 @@
 @import url("/styles/header.css");
 @import url("/styles/cards.css");
 @import url("/styles/footer.css");
+@import url("/styles/buttons.css");
 
 body {
     margin: 0;
@@ -8,6 +9,16 @@ body {
 .main--container{
     display: flex;
 }
+
+h2 {
+    margin-top: 0px;
+}
+
+h3 {
+    margin: 0px;
+}
+
 h4{
     margin-bottom: .5em
 }
+
