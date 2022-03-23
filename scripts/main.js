@@ -76,19 +76,31 @@ parksElement.addEventListener("change", event => {
                             <div class="forecast--display" id="day--forecast--display--${counter}">`
                             let weatherIdEl = document.getElementById(`day--forecast--display--${counter}`)
                                 if (item.weather[0].main === "Rain"){
-                                    weatherIdEl.style.backgroundImage = "url('/images/rain.webp')"
+                                    weatherIdEl.style.backgroundImage = `linear-gradient(
+                                        rgba(0, 0, 0, 0.5),
+                                        rgba(0, 0, 0, 0.5)
+                                      ), url('/images/rain.webp')`
                                 } else if (item.weather[0].main === "Clouds"){
-                                    weatherIdEl.style.backgroundImage = "url('/images/cloudy.webp')"
+                                    weatherIdEl.style.backgroundImage = `linear-gradient(
+                                        rgba(0, 0, 0, 0.5),
+                                        rgba(0, 0, 0, 0.5)
+                                      ), url('/images/cloudy.webp')`
                                 } else if (item.weather[0].main === "Clear"){
-                                    weatherIdEl.style.backgroundImage = "url('/images/sunny.webp')"
+                                    weatherIdEl.style.backgroundImage = `linear-gradient(
+                                        rgba(0, 0, 0, 0.5),
+                                        rgba(0, 0, 0, 0.5)
+                                      ), url('/images/sunny.webp')`
                                 } else if (item.weather[0].main === "Snow"){
-                                    weatherIdEl.style.backgroundImage = "url('/images/snow.webp')"
+                                    weatherIdEl.style.backgroundImage = `linear-gradient(
+                                        rgba(0, 0, 0, 0.5),
+                                        rgba(0, 0, 0, 0.5)
+                                      ), url('/images/snow.webp')`
                                 }
-                              weatherElement.innerHTML+= `Forecast: ${item.weather[0].main}
+                              document.querySelector(`#day--forecast--display--${counter}`).innerHTML+= `<p>Forecast: ${item.weather[0].main}</p>
                                 <br>
-                                High: ${item.main.temp_max}&deg;F
+                                <p>High: ${item.main.temp_max}&deg;F</p>
                                 <br>
-                                Low: ${item.main.temp_min}&deg;F
+                                <p>Low: ${item.main.temp_min}&deg;F</p>
                                 <br>
                             </div>`
                             counter++;
@@ -105,36 +117,6 @@ const clearWeather = () => {
     weatherElement.innerHTML = ""
 }
 
-
-
-//Rain, Clouds, Clear, Snow
-//event listener for populating weather
-// parksElement.addEventListener("change", event =>{
-//     getWeather(selectedPark)
-//     .then(response => {
-//         clearWeather()
-//         weatherElement.innerHTML = `<h2>5 Day Forecast</h2>`
-//         let dateArray = renderDate(response.list)
-//         let counter = 0
-//         for (let item of response.list){ 
-//             if(dateArray[counter] === item.dt_txt.split(" ")[0]) {
-//                 weatherElement.innerHTML += `
-//                 <h4>
-//                 ${formatDate(item.dt_txt)}
-//                 </h4>
-//                 <div class="forecast--display" id="day--forecast--display--${counter}">`
-//                   weatherElement.innerHTML +=  `Forecast: ${item.weather[0].main}
-//                     <br>
-//                     High: ${item.main.temp_max}&deg;F
-//                     <br>
-//                     Low: ${item.main.temp_min}&deg;F
-//                     <br>
-//                 </div>`
-//                 counter++;
-//             }
-//         }
-//     })   
-// })
 
 attractionElement.addEventListener("change", event => {
     getAttractions().then(response => {
