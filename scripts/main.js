@@ -74,13 +74,22 @@ parksElement.addEventListener("change", event =>{
         let dateArray = [];
         for (let item of response.list){ 
             if(counter < 6) {
-
+                
                 weatherElement.innerHTML += `
                 <h4>
                 ${formatDate(item.dt_txt)}
                 </h4>
-                <div class="day--forecast--display--${counter}">`
-                    if (item.weather[0].main === "Rain")
+                <div class="forecast--display" id="day--forecast--display--${counter}">`
+                let weatherIdEl = document.getElementById(`day--forecast--display--${counter}`)
+                    if (item.weather[0].main === "Rain"){
+                        weatherIdEl.style.backgroundImage = url('/images/rain.webp')
+                    } else if (item.weather[0].main === "Clouds"){
+                        weatherIdEl.style.backgroundImage = url('/images/cloudy.webp')
+                    } else if (item.weather[0].main === "Clear"){
+                        weatherIdEl.style.backgroundImage = url('/images/sunny.webp')
+                    } else if (item.weather[0].main === "Snow"){
+                        weatherIdEl.style.backgroundImage = url('/images/snow.webp')
+                    }
                     `Forecast: ${item.weather[0].main}
                     <br>
                     High: ${item.main.temp_max}&deg;F
@@ -93,7 +102,6 @@ parksElement.addEventListener("change", event =>{
         }
     })   
 })
-
 
 attractionElement.addEventListener("change", event => {
     getAttractions().then(response => {
