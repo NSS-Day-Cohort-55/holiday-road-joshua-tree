@@ -4,7 +4,8 @@
     flex: 2;
     margin-left: 1em;
     border: solid 5px #7dd958;
-    background-color: #7dd958;
+    background: rgb(88,193,217);
+    background: radial-gradient(circle, rgba(88,193,217,1) 35%, rgba(125,217,88,1) 100%);
     color: black;
 
 }
