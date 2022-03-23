@@ -30,7 +30,6 @@ let eateryButtonBoolean = false;
 
 stateElement.addEventListener("change", event => {
     let newParksArray = []
-    console.log(event)
     getParks()
     .then(response => {
         for (let item of response.data){
@@ -185,14 +184,35 @@ tripContainerElement.addEventListener("click", event => {
     else if (event.target.id === "attractions--detail--button") {
         attractionSelection.innerHTML = `
         <strong>Description:</strong> ${selectedAttraction.description}
+        <br>`
+        if (selectedAttraction.ameneties.restrooms === true) {
+            attractionSelection.innerHTML += `
+            <strong>Restrooms:</strong> &#128077; YUP
+            `
+        }
+        else if (selectedAttraction.ameneties.restrooms === false) {
+            attractionSelection.innerHTML += `
+            <strong>Restrooms:</strong> &#x1F44E; NOPE
+            `
+        }
         
-        `;        //add address to line above 
+                //add address to line above 
     }
     else if (event.target.id === "eateries--detail--button") {
         eaterySelection.innerHTML = `
         <strong>Description:</strong> ${selectedEatery.description}
-    
-        `;    //add amenity stufff to line above 
+        <br>`
+        if (selectedEatery.ameneties.wifi === true) {
+            eaterySelection.innerHTML += `
+            <strong>Wifi:</strong> &#128077; YUP
+            `
+        }
+        else if (selectedEatery.ameneties.wifi === false) {
+            eaterySelection.innerHTML += `
+            <strong>Wifi:</strong> &#x1F44E; NOPE
+            `
+        }
+            //add amenity stufff to line above 
     }
 })
 
