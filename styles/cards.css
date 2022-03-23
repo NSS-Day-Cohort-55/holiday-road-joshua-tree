@@ -4,14 +4,20 @@
     flex: 2;
     margin-left: 1em;
     border: solid 5px #7dd958;
-    background: rgb(88,193,217);
-    background: radial-gradient(circle, rgb(96 202 149) 35%, rgba(125,217,88,1) 100%);
-    color: black;
-    max-height: 40em;
-    box-shadow: 2px 2px 10px
+    /* background: rgb(80,177,200); */
+    background: linear-gradient(289deg, rgb(110 203 132) 0%, rgba(125,217,88,1) 67%);
+    box-shadow: 2px 2px 10px black;
+    /* color: black; */
+    /* max-height: 40em; */
+    border-radius: 12px 5px 5px 12px;
+    padding-left: 1em;
+    color: white;
 }
-    /* TODO margin bottom on all dropdowns!!!! You asshole */
-
+    
+#saved--trips--title{
+    margin-top: 2em;
+    /* text-decoration: underline; */
+}
 .states--dropdown--container{
     margin-bottom: 0.5em;
 }
@@ -34,13 +40,14 @@
     border: solid #7dd958 5px;
     /* padding: 1em; */
     /* background-color: #7dd958; */
-    background: rgb(88,193,217);
-    background: linear-gradient(236deg, rgba(88,193,217,1) 0%, rgba(125,217,88,1) 49%); 
+    background: rgb(80,177,200);
+    background: linear-gradient(290deg, rgba(80,177,200,1) 0%, rgba(125,217,88,1) 89%);; 
     padding-top: 0;
     margin: 0px 1em 0px 1em;
     margin-top: 0%;
     flex: 6;
-    box-shadow: 2px 2px 10px
+    box-shadow: 2px 2px 10px;
+    border-radius: 5px
 
 }
 
@@ -86,9 +93,11 @@
 .forecast--container {
     display: flex;
     flex-direction: column;
-    background-color: #35b7d1;
+    background: linear-gradient(315deg, rgba(45,90,100,1) 0%, rgba(80,177,200,1) 51%, rgb(94 189 168) 100%);
     padding: 1em;
-    box-shadow: 2px 2px 10px
+    box-shadow: 2px 2px 10px;
+    margin-right: 1em;
+    border-radius: 5px 12px 12px 5px;
 
 }
 .forecast--display{
@@ -96,7 +105,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
-    text-shadow: 0.04em 0.05em black;
+    text-shadow: 0.09em 0.09em black;
     padding-left: .5em;
 }
 .saved--trip ul{
