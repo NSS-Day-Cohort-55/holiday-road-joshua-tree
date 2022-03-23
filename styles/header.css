@@ -3,7 +3,8 @@ header {
     align-items: center;
     border-bottom: solid 5px black;
     margin-bottom: 2em;
-    background-color: #7dd958;
+    background: rgb(125,217,88);
+    background: linear-gradient(0deg, rgba(125,217,88,1) 0%, rgb(0 175 239) 100%);
     color: white
 }
 h1 {
