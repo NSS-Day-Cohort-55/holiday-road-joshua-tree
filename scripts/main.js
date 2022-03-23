@@ -9,7 +9,7 @@ import { makeParksDropdown } from "./parks/parksHTMLgenerator.js"
 import { saveTrip } from "./trips/tripsHTMLGenerator.js";
 import { getWeather } from "./weather/WeatherDataManager.js"
 import { createTrip, deleteTrip } from "./trips/tripsDataManager.js"
-import { formatDate } from "./date.js"
+import { formatDate, renderDate } from "./date.js"
 
 let stateElement = document.querySelector("#state--select")
 let parksElement = document.querySelector(".parks--dropdown--container")
@@ -69,10 +69,10 @@ parksElement.addEventListener("change", event =>{
     .then(response => {
         clearWeather()
         let counter = 1
+        renderDate(response.list)
         let dateArray = [];
         for (let item of response.list){ 
             if(counter < 6) {
-
                 weatherElement.innerHTML += `
                 <h4>
                 ${formatDate(item.dt_txt)}

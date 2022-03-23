@@ -12,5 +12,15 @@ export const formatDate = (string) => {
 
 
 export const renderDate = (arrayObjects) => {
-    getWeather(arrayObjects)
+    let newArray = []
+    let newDate = arrayObjects[0].dt_txt.split(" ")[0]
+    newArray.push(newDate)
+    for (let i=0;i<arrayObjects.length;i++){
+        if(newDate !== arrayObjects[i].dt_txt.split(" ")[0]){
+            newDate = arrayObjects[i].dt_txt.split(" ")[0]
+            newArray.push(newDate)
+        }
+    }
+    console.log(newArray)
+    return newArray
 }
