@@ -33,7 +33,6 @@ stateElement.addEventListener("change", event => {
     let newParksArray = []
     getParks()
     .then(response => {
-        selectedPark = ""
         for (let item of response.data){
             if (event.target.value === item.states){
                 newParksArray.push(item) 
@@ -61,6 +60,31 @@ parksElement.addEventListener("change", event => {
                 selectedPark = item;
                 parkButtonBoolean = true;
                 checkIfTrue();
+                //getting weather
+                getWeather(selectedPark)
+                .then(response => {
+                    clearWeather()
+                    weatherElement.innerHTML = `<h2>5 Day Forecast</h2>`
+                    let dateArray = renderDate(response.list)
+                    let counter = 0
+                    for (let item of response.list){ 
+                        if(dateArray[counter] === item.dt_txt.split(" ")[0]) {
+                            weatherElement.innerHTML += `
+                            <h4>
+                            ${formatDate(item.dt_txt)}
+                            </h4>
+                            <div class="day--forecast--display--${counter}">
+                                Forecast: ${item.weather[0].main}
+                                <br>
+                                High: ${item.main.temp_max}&deg;F
+                                <br>
+                                Low: ${item.main.temp_min}&deg;F
+                                <br>
+                            </div>`
+                            counter++;
+                        }
+                    }
+                })   
             }
         }
 
@@ -70,36 +94,6 @@ parksElement.addEventListener("change", event => {
 const clearWeather = () => {
     weatherElement.innerHTML = ""
 }
-
-
-//event listener for populating weather
-parksElement.addEventListener("change", event =>{
-    getWeather(selectedPark)
-    .then(response => {
-        clearWeather()
-        weatherElement.innerHTML = `<h2>5 Day Forecast</h2>`
-        let dateArray = renderDate(response.list)
-        let counter = 0
-        for (let item of response.list){ 
-            if(dateArray[counter] === item.dt_txt.split(" ")[0]) {
-                weatherElement.innerHTML += `
-                <h4>
-                ${formatDate(item.dt_txt)}
-                </h4>
-                <div class="day--forecast--display--${counter}">
-                    Forecast: ${item.weather[0].main}
-                    <br>
-                    High: ${item.main.temp_max}&deg;F
-                    <br>
-                    Low: ${item.main.temp_min}&deg;F
-                    <br>
-                </div>`
-                counter++;
-            }
-        }
-    })   
-})
-
 
 attractionElement.addEventListener("change", event => {
     getAttractions().then(response => {
