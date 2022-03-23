@@ -33,17 +33,14 @@ stateElement.addEventListener("change", event => {
     let newParksArray = []
     getParks()
     .then(response => {
+        selectedPark = ""
         for (let item of response.data){
             if (event.target.value === item.states){
                 newParksArray.push(item) 
                 selectedState = event.target.value
-                selectedPark = item;
-                parkButtonBoolean = true;
-                checkIfTrue();
                 
             }
         }
-        //make it display nothing until user makes a selection
         parksElement.innerHTML = makeParksDropdown(newParksArray)
     })
     // selectedPark = event.target.value
@@ -52,10 +49,22 @@ stateElement.addEventListener("change", event => {
 
 parksElement.addEventListener("change", event => {
     let parkSelection = document.querySelector(".parks--display")
-    parkSelection.innerHTML = `<h3>${event.target.value}</h3>
-    <p id="populate--parks--details"> </p>
-    <button type="button" id="parks--detail--button" class="detail--button">Details</button>
-    `   
+    getParks()
+    .then(response => {
+        for (let item of response.data) {
+            if (event.target.value === item.fullName) {
+
+                parkSelection.innerHTML = `<h3>${event.target.value}</h3>
+                <p id="populate--parks--details"> </p>
+                <button type="button" id="parks--detail--button" class="detail--button">Details</button>
+                `   
+                selectedPark = item;
+                parkButtonBoolean = true;
+                checkIfTrue();
+            }
+        }
+
+    })
 }) 
 
 const clearWeather = () => {
