@@ -37,13 +37,9 @@ stateElement.addEventListener("change", event => {
             if (event.target.value === item.states){
                 newParksArray.push(item) 
                 selectedState = event.target.value
-                selectedPark = item;
-                parkButtonBoolean = true;
-                checkIfTrue();
                 
             }
         }
-        //make it display nothing until user makes a selection
         parksElement.innerHTML = makeParksDropdown(newParksArray)
     })
     // selectedPark = event.target.value
@@ -52,45 +48,52 @@ stateElement.addEventListener("change", event => {
 
 parksElement.addEventListener("change", event => {
     let parkSelection = document.querySelector(".parks--display")
-    parkSelection.innerHTML = `<h3>${event.target.value}</h3>
-    <p id="populate--parks--details"> </p>
-    <button type="button" id="parks--detail--button" class="detail--button">Details</button>
-    `   
+    getParks()
+    .then(response => {
+        for (let item of response.data) {
+            if (event.target.value === item.fullName) {
+
+                parkSelection.innerHTML = `<h3>${event.target.value}</h3>
+                <p id="populate--parks--details"> </p>
+                <button type="button" id="parks--detail--button" class="detail--button">Details</button>
+                `   
+                selectedPark = item;
+                parkButtonBoolean = true;
+                checkIfTrue();
+                //getting weather
+                getWeather(selectedPark)
+                .then(response => {
+                    clearWeather()
+                    weatherElement.innerHTML = `<h2>5 Day Forecast</h2>`
+                    let dateArray = renderDate(response.list)
+                    let counter = 0
+                    for (let item of response.list){ 
+                        if(dateArray[counter] === item.dt_txt.split(" ")[0]) {
+                            weatherElement.innerHTML += `
+                            <h4>
+                            ${formatDate(item.dt_txt)}
+                            </h4>
+                            <div class="day--forecast--display--${counter}">
+                                Forecast: ${item.weather[0].main}
+                                <br>
+                                High: ${item.main.temp_max}&deg;F
+                                <br>
+                                Low: ${item.main.temp_min}&deg;F
+                                <br>
+                            </div>`
+                            counter++;
+                        }
+                    }
+                })   
+            }
+        }
+
+    })
 }) 
 
 const clearWeather = () => {
     weatherElement.innerHTML = ""
 }
-
-
-//event listener for populating weather
-parksElement.addEventListener("change", event =>{
-    getWeather(selectedPark)
-    .then(response => {
-        clearWeather()
-        weatherElement.innerHTML = `<h2>5 Day Forecast</h2>`
-        let dateArray = renderDate(response.list)
-        let counter = 0
-        for (let item of response.list){ 
-            if(dateArray[counter] === item.dt_txt.split(" ")[0]) {
-                weatherElement.innerHTML += `
-                <h4>
-                ${formatDate(item.dt_txt)}
-                </h4>
-                <div class="day--forecast--display--${counter}">
-                    Forecast: ${item.weather[0].main}
-                    <br>
-                    High: ${item.main.temp_max}&deg;F
-                    <br>
-                    Low: ${item.main.temp_min}&deg;F
-                    <br>
-                </div>`
-                counter++;
-            }
-        }
-    })   
-})
-
 
 attractionElement.addEventListener("change", event => {
     getAttractions().then(response => {
@@ -170,19 +173,53 @@ tripContainerElement.addEventListener("click", event => {
     if (event.target.id === "parks--detail--button") {
         parkSelection.innerHTML = `
         <strong>Description:</strong> ${selectedPark.description}
+        <br>
+        ${selectedPark.url}
         `;
     }
     else if (event.target.id === "attractions--detail--button") {
         attractionSelection.innerHTML = `
+        <strong>City:</strong> ${selectedAttraction.city}
+        <br>
+        `
+        if (selectedAttraction.ameneties.restrooms === true) {
+            attractionSelection.innerHTML += `
+            <strong>Restrooms:</strong> &#128077;
+            <br>
+            `
+        }
+        else if (selectedAttraction.ameneties.restrooms === false) {
+            attractionSelection.innerHTML += `
+            <strong>Restrooms:</strong> &#x1F44E;
+            <br>
+            `
+        }
+        attractionSelection.innerHTML += `
         <strong>Description:</strong> ${selectedAttraction.description}
+        `
         
-        `;        //add address to line above 
+                //add address to line above 
     }
     else if (event.target.id === "eateries--detail--button") {
         eaterySelection.innerHTML = `
+        <strong>City:</strong> ${selectedEatery.city}
+        <br>
+        `
+        if (selectedEatery.ameneties.wifi === true) {
+            eaterySelection.innerHTML += `
+            <strong>Wifi:</strong> &#128077;
+            <br>
+            `
+        }
+        else if (selectedEatery.ameneties.wifi === false) {
+            eaterySelection.innerHTML += `
+            <strong>Wifi:</strong> &#x1F44E;
+            <br>
+            `
+        }
+        eaterySelection.innerHTML += `
         <strong>Description:</strong> ${selectedEatery.description}
-    
-        `;    //add amenity stufff to line above 
+        `
     }
 })
 
