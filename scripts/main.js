@@ -169,7 +169,7 @@ tripContainerElement.addEventListener("click", event => {
 
     if (event.target.id === "parks--detail--button") {
         parkSelection.innerHTML = `
-        <strong>Description:</strong> ${event.description}
+        <strong>Description:</strong> ${selectedPark.description}
         <br>
         ${selectedPark.url}
         `;
