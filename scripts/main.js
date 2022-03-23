@@ -28,7 +28,6 @@ let attractionButtonBoolean = false;
 let eateryButtonBoolean = false;
 
 
-
 stateElement.addEventListener("change", event => {
     let newParksArray = []
     getParks()
@@ -52,14 +51,15 @@ parksElement.addEventListener("change", event => {
     .then(response => {
         for (let item of response.data) {
             if (event.target.value === item.fullName) {
-
-                parkSelection.innerHTML = `<h3>${event.target.value}</h3>
+                parkSelection.innerHTML = `
+                <h3>${event.target.value}</h3>
                 <p id="populate--parks--details"> </p>
                 <button type="button" id="parks--detail--button" class="detail--button">Details</button>
                 `   
                 selectedPark = item;
                 parkButtonBoolean = true;
                 checkIfTrue();
+                
                 //getting weather
                 getWeather(selectedPark)
                 .then(response => {
@@ -117,7 +117,6 @@ const clearWeather = () => {
     weatherElement.innerHTML = ""
 }
 
-
 attractionElement.addEventListener("change", event => {
     getAttractions().then(response => {
         for (let item of response) {
@@ -153,8 +152,6 @@ eateriesElement.addEventListener("change", event => {
     })
 })
 
-
-
 const submitButton = document.querySelector("#submit--button")
 
 const checkIfTrue = () => {
@@ -162,8 +159,6 @@ const checkIfTrue = () => {
         submitButton.disabled = false;
     }   
 }
-
-
 
 submitButton.addEventListener("click", event => {
     const state = selectedState
@@ -195,9 +190,11 @@ tripContainerElement.addEventListener("click", event => {
 
     if (event.target.id === "parks--detail--button") {
         parkSelection.innerHTML = `
-        <strong>Description:</strong> ${selectedPark.description}
+        <strong>Address:</strong> ${selectedPark.addresses[0].line1}, ${selectedPark.addresses[0].city}, ${selectedPark.addresses[0].stateCode} ${selectedPark.addresses[0].postalCode}
         <br>
-        ${selectedPark.url}
+        <strong>Website:</strong> <a href="${selectedPark.url}" target="_blank">Click Here</a>
+        <br>
+        <strong>Description:</strong> ${selectedPark.description}
         `;
     }
     else if (event.target.id === "attractions--detail--button") {
@@ -245,8 +242,6 @@ tripContainerElement.addEventListener("click", event => {
         `
     }
 })
-
-
 
 const startPage = () => {
     getStates()
