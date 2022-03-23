@@ -72,6 +72,10 @@ const formatDate = (string) => {
     return `${month}-${day}`
 }
 
+const weatherBackground = (obj) => {
+    if (obj.weather.main[0] === )
+}
+//Rain, Clouds, Clear, Snow
 //event listener for populating weather
 parksElement.addEventListener("change", event =>{
     getWeather(selectedPark)
@@ -84,8 +88,9 @@ parksElement.addEventListener("change", event =>{
                 <h4>
                 ${formatDate(item.dt_txt.split(" ")[0])}
                 </h4>
-                <div class="day--forecast--display--${counter}">
-                    Forecast: ${item.weather[0].main}
+                <div class="day--forecast--display--${counter}">`
+                    if (item.weather[0].main === "Rain")
+                    `Forecast: ${item.weather[0].main}
                     <br>
                     High: ${item.main.temp_max}&deg;F
                     <br>
