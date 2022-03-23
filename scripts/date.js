@@ -21,6 +21,5 @@ export const renderDate = (arrayObjects) => {
             newArray.push(newDate)
         }
     }
-    console.log(newArray)
     return newArray
 }
