@@ -70,12 +70,11 @@ parksElement.addEventListener("change", event =>{
     getWeather(selectedPark)
     .then(response => {
         clearWeather()
-        let counter = 1
-        renderDate(response.list)
-        let dateArray = [];
+        weatherElement.innerHTML = `<h2>5 Day Forecast</h2>`
+        let dateArray = renderDate(response.list)
+        let counter = 0
         for (let item of response.list){ 
-            if(counter < 6) {
-                
+            if(dateArray[counter] === item.dt_txt.split(" ")[0]) {
                 weatherElement.innerHTML += `
                 <h4>
                 ${formatDate(item.dt_txt)}
