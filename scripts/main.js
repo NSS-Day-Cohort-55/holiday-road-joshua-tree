@@ -52,8 +52,8 @@ parksElement.addEventListener("change", event => {
     .then(response => {
         for (let item of response.data) {
             if (event.target.value === item.fullName) {
-
-                parkSelection.innerHTML = `<h3>${event.target.value}</h3>
+                parkSelection.innerHTML = `
+                <h3>${event.target.value}</h3>
                 <p id="populate--parks--details"> </p>
                 <button type="button" id="parks--detail--button" class="detail--button">Details</button>
                 `   
@@ -68,11 +68,9 @@ parksElement.addEventListener("change", event => {
                     let dateArray = renderDate(response.list)
                     let counter = 0
                     for (let item of response.list){ 
-                        if(dateArray[counter] === item.dt_txt.split(" ")[0]) {
+                        if(dateArray[counter] === item.dt_txt.split(" ")[0] && counter < 5) {
                             weatherElement.innerHTML += `
-                            <h4>
-                            ${formatDate(item.dt_txt)}
-                            </h4>
+                            <h4>${formatDate(item.dt_txt)}</h4>
                             <div class="day--forecast--display--${counter}">
                                 Forecast: ${item.weather[0].main}
                                 <br>
