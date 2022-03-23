@@ -169,41 +169,54 @@ tripContainerElement.addEventListener("click", event => {
 
     if (event.target.id === "parks--detail--button") {
         parkSelection.innerHTML = `
-        <strong>Description:</strong> ${selectedPark.description}
+        <strong>Description:</strong> ${event.description}
+        <br>
+        ${selectedPark.url}
         `;
     }
     else if (event.target.id === "attractions--detail--button") {
         attractionSelection.innerHTML = `
-        <strong>Description:</strong> ${selectedAttraction.description}
-        <br>`
+        <strong>City:</strong> ${selectedAttraction.city}
+        <br>
+        `
         if (selectedAttraction.ameneties.restrooms === true) {
             attractionSelection.innerHTML += `
-            <strong>Restrooms:</strong> &#128077; YUP
+            <strong>Restrooms:</strong> &#128077;
+            <br>
             `
         }
         else if (selectedAttraction.ameneties.restrooms === false) {
             attractionSelection.innerHTML += `
-            <strong>Restrooms:</strong> &#x1F44E; NOPE
+            <strong>Restrooms:</strong> &#x1F44E;
+            <br>
             `
         }
+        attractionSelection.innerHTML += `
+        <strong>Description:</strong> ${selectedAttraction.description}
+        `
         
                 //add address to line above 
     }
     else if (event.target.id === "eateries--detail--button") {
         eaterySelection.innerHTML = `
-        <strong>Description:</strong> ${selectedEatery.description}
-        <br>`
+        <strong>City:</strong> ${selectedEatery.city}
+        <br>
+        `
         if (selectedEatery.ameneties.wifi === true) {
             eaterySelection.innerHTML += `
-            <strong>Wifi:</strong> &#128077; YUP
+            <strong>Wifi:</strong> &#128077;
+            <br>
             `
         }
         else if (selectedEatery.ameneties.wifi === false) {
             eaterySelection.innerHTML += `
-            <strong>Wifi:</strong> &#x1F44E; NOPE
+            <strong>Wifi:</strong> &#x1F44E;
+            <br>
             `
         }
-            //add amenity stufff to line above 
+        eaterySelection.innerHTML += `
+        <strong>Description:</strong> ${selectedEatery.description}
+        `
     }
 })
 
