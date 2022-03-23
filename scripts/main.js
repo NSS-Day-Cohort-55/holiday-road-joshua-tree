@@ -28,7 +28,6 @@ let attractionButtonBoolean = false;
 let eateryButtonBoolean = false;
 
 
-
 stateElement.addEventListener("change", event => {
     let newParksArray = []
     getParks()
@@ -60,6 +59,7 @@ parksElement.addEventListener("change", event => {
                 selectedPark = item;
                 parkButtonBoolean = true;
                 checkIfTrue();
+                
                 //getting weather
                 getWeather(selectedPark)
                 .then(response => {
@@ -105,37 +105,6 @@ const clearWeather = () => {
     weatherElement.innerHTML = ""
 }
 
-
-
-//Rain, Clouds, Clear, Snow
-//event listener for populating weather
-// parksElement.addEventListener("change", event =>{
-//     getWeather(selectedPark)
-//     .then(response => {
-//         clearWeather()
-//         weatherElement.innerHTML = `<h2>5 Day Forecast</h2>`
-//         let dateArray = renderDate(response.list)
-//         let counter = 0
-//         for (let item of response.list){ 
-//             if(dateArray[counter] === item.dt_txt.split(" ")[0]) {
-//                 weatherElement.innerHTML += `
-//                 <h4>
-//                 ${formatDate(item.dt_txt)}
-//                 </h4>
-//                 <div class="forecast--display" id="day--forecast--display--${counter}">`
-//                   weatherElement.innerHTML +=  `Forecast: ${item.weather[0].main}
-//                     <br>
-//                     High: ${item.main.temp_max}&deg;F
-//                     <br>
-//                     Low: ${item.main.temp_min}&deg;F
-//                     <br>
-//                 </div>`
-//                 counter++;
-//             }
-//         }
-//     })   
-// })
-
 attractionElement.addEventListener("change", event => {
     getAttractions().then(response => {
         for (let item of response) {
@@ -171,8 +140,6 @@ eateriesElement.addEventListener("change", event => {
     })
 })
 
-
-
 const submitButton = document.querySelector("#submit--button")
 
 const checkIfTrue = () => {
@@ -180,8 +147,6 @@ const checkIfTrue = () => {
         submitButton.disabled = false;
     }   
 }
-
-
 
 submitButton.addEventListener("click", event => {
     const state = selectedState
@@ -213,9 +178,11 @@ tripContainerElement.addEventListener("click", event => {
 
     if (event.target.id === "parks--detail--button") {
         parkSelection.innerHTML = `
-        <strong>Description:</strong> ${selectedPark.description}
+        <strong>Address:</strong> ${selectedPark.addresses[0].line1}, ${selectedPark.addresses[0].city}, ${selectedPark.addresses[0].stateCode} ${selectedPark.addresses[0].postalCode}
         <br>
-        ${selectedPark.url}
+        <strong>Website:</strong> <a href="${selectedPark.url}" target="_blank">Click Here</a>
+        <br>
+        <strong>Description:</strong> ${selectedPark.description}
         `;
     }
     else if (event.target.id === "attractions--detail--button") {
@@ -263,8 +230,6 @@ tripContainerElement.addEventListener("click", event => {
         `
     }
 })
-
-
 
 const startPage = () => {
     getStates()
