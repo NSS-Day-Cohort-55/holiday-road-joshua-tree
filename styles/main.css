@@ -11,10 +11,13 @@ body {
 }
 .main--container{
     display: flex;
+    margin-bottom: 2em;
+    font-family: 'Lora';
 }
 
 h2 {
     margin-top: 0px;
+    color: black;
 }
 
 h3 {
