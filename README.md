@@ -1,15 +1,36 @@
+
+| [ERD](./images/ERD.png) | [Wireframe](./images/Wireframe.png)
+
+Project:
+
+Our team has been contracted by the National Parks Service to build an application that will allow people to plan excursions for trips to our country's beautiful national parks. The starting point of each trip will be Nashville, TN with a national park destination and two other stops along the way. The additional stops will include one Bizarrary and one Eatery.
+
+We are creating the triip for a specific type of user. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PROJECT INSTRUCTIONS:
+
 # Holiday Road from Nashville
 
 You and your teammates have been contracted by the National Parks Service to build an application that will allow people to plan excursions for trips to our country's beautiful national parks. The starting point of each trip will be Nashville, TN with a national park destination and two other stops along the way. The additional stops will include one Bizarrary and one Eatery.
 
 You are creating this app for a specific type of user. Choose one of the personas below as your target. Refer back to the persona when making choices about layout, content hierarchy, and usability. 
 
-## Getting Started
 
-This is going to be your first full, professional Sprint. A Sprint is part of the [Scrum Framework](https://en.wikipedia.org/wiki/Scrum_%28software_development%29) for agile development. 
-1. You will be doing daily scrum stand-ups, where you provide a **concise** status update on your own work. 
-1. You will be taking part in a sprint review where you demonstrate the work you have completed. 
-1. You will be taking part in a retrospective, where the team reflects on the work done, the team dynamics, and discuss how to improve in the future.
 
 ### Code Review
 
