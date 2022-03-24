@@ -54,7 +54,9 @@ parksElement.addEventListener("change", event => {
                 parkSelection.innerHTML = `
                 <h3>${event.target.value}</h3>
                 <p id="populate--parks--details"> </p>
-                <button type="button" id="parks--detail--button" class="detail--button">Details</button>
+                <div id="parks--detail--button--div">
+                    <button type="button" id="parks--detail--button" class="detail--button">Details</button>
+                </div>
                 `   
                 selectedPark = item;
                 parkButtonBoolean = true;
@@ -124,7 +126,9 @@ attractionElement.addEventListener("change", event => {
                 document.querySelector(".attractions--display").innerHTML = `
                     <h3> ${item.name} </h3>
                     <p id="populate--attractions--details"> </p>
-                    <button type="button" id="attractions--detail--button" class="detail--button">Details</button>
+                    <div id="attractions--detail--button--div">
+                        <button type="button" id="attractions--detail--button" class="detail--button">Details</button>
+                    </div>
                    `                                
                 selectedAttraction = item
                 attractionButtonBoolean = true;
@@ -141,7 +145,9 @@ eateriesElement.addEventListener("change", event => {
                 document.querySelector(".eateries--display").innerHTML = `
                     <h3> ${item.businessName} </h3>
                     <p id="populate--eatery--details"> </p>
-                    <button type="button" id="eateries--detail--button" class="detail--button">Details</button>
+                    <div id="eateries--detail--button--div">
+                        <button type="button" id="eateries--detail--button" class="detail--button">Details</button>
+                    </div>
                     `                                 
                     selectedEatery = item;
                     eateryButtonBoolean = true;
@@ -189,6 +195,7 @@ tripContainerElement.addEventListener("click", event => {
     let eaterySelection = document.querySelector("#populate--eatery--details")
 
     if (event.target.id === "parks--detail--button") {
+        document.querySelector("#parks--detail--button--div").innerHTML = ""
         parkSelection.innerHTML = `
         <strong>Address:</strong> ${selectedPark.addresses[0].line1}, ${selectedPark.addresses[0].city}, ${selectedPark.addresses[0].stateCode} ${selectedPark.addresses[0].postalCode}
         <br>
@@ -197,7 +204,9 @@ tripContainerElement.addEventListener("click", event => {
         <strong>Description:</strong> ${selectedPark.description}
         `;
     }
+    
     else if (event.target.id === "attractions--detail--button") {
+        document.querySelector("#attractions--detail--button--div").innerHTML = ""
         attractionSelection.innerHTML = `
         <strong>City:</strong> ${selectedAttraction.city}
         <br>
@@ -220,7 +229,9 @@ tripContainerElement.addEventListener("click", event => {
         
                 //add address to line above 
     }
+    
     else if (event.target.id === "eateries--detail--button") {
+        document.querySelector("#eateries--detail--button--div").innerHTML = ""
         eaterySelection.innerHTML = `
         <strong>City:</strong> ${selectedEatery.city}
         <br>
