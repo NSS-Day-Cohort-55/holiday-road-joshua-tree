@@ -1,15 +1,34 @@
+
+## Project:
+
+We've designed a web application that enables a user to select a destination state, obtain a full listing of active parks within that state, and then select an attraction and eatery along the way. We utilized API's to retrieve parks, attractions, eateries and weather forecast data.
+
+We've created a Trip Preview section that populates as the user selects a given park, attraction, or eatery. Once all 3 have been selected, we've enabled a Save Trip Button that creates a Saved Trip object with the selection details and posts the object to the DOM. We've created details buttons, that, when clicked, populate the objects in the Trip Preview section with additional properties, such as description.
+
+We tailored our application to a specific user, Peter, who needs internet connectivity on his trips. As such, we've added an object property to the eateries he selects, highlighting whether or not the location contains wifi. 
+
+Once the user has picked a park, we generated a 5 day forecast for that area based on the latitude and longitude, utilizing the Weather Forecast API. 
+
+
+| [ERD](./images/ERD.png) | [Wireframe](./images/Wireframe.png)
+
+
+
+
+
+
+
+
+
+## PROJECT INSTRUCTIONS:
+
 # Holiday Road from Nashville
 
 You and your teammates have been contracted by the National Parks Service to build an application that will allow people to plan excursions for trips to our country's beautiful national parks. The starting point of each trip will be Nashville, TN with a national park destination and two other stops along the way. The additional stops will include one Bizarrary and one Eatery.
 
 You are creating this app for a specific type of user. Choose one of the personas below as your target. Refer back to the persona when making choices about layout, content hierarchy, and usability. 
 
-## Getting Started
 
-This is going to be your first full, professional Sprint. A Sprint is part of the [Scrum Framework](https://en.wikipedia.org/wiki/Scrum_%28software_development%29) for agile development. 
-1. You will be doing daily scrum stand-ups, where you provide a **concise** status update on your own work. 
-1. You will be taking part in a sprint review where you demonstrate the work you have completed. 
-1. You will be taking part in a retrospective, where the team reflects on the work done, the team dynamics, and discuss how to improve in the future.
 
 ### Code Review
 
