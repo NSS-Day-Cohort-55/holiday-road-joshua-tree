@@ -16,6 +16,7 @@
     
 #saved--trips--title{
     margin-top: 2em;
+    margin-bottom: .8em;
     /* text-decoration: underline; */
 }
 .states--dropdown--container{
@@ -62,27 +63,27 @@
 }
 .parks--preview{
     padding: .5em;
-    background-color: white;
+    margin: .5em;
 }
 .attractions--preview{
     padding: .5em;
-    background-color: white;
+    margin: .5em;
 }
 .eateries--preview{
     padding: .5em;
-    background-color: white;
+    margin: .5em;
 }
 .forecast--trips--container{
     flex: 2;
     
 }
 
-.day--forecast--display--5 {
+.day--forecast--display--4 {
     margin-bottom: 1em;
 }
 
-.day--forecast--display--1 h4 {
-    margin-top: .5em;
+.day--forecast--display--0 h4 {
+    margin-top: 0px;
 }
 
 #parks--select {
