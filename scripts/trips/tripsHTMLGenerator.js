@@ -1,11 +1,10 @@
 export const saveTrip = (tripObject) => {
     return `<div class="saved--trip">
         <ul>
-            <li>${tripObject.park.fullName}</li>
-            <li>${tripObject.attraction.name}</li>
-            <li>${tripObject.eatery.businessName}</li>
+            <li ><u>Park:</u> ${tripObject.park.fullName}</li>
+            <li ><u>Attraction:</u> ${tripObject.attraction.name}</li>
+            <li ><u>Eatery:</u> ${tripObject.eatery.businessName}</li>
         </ul>
-        <button id="delete--trip--button">Delete Trip</button>
 
     </div>`
-}
+}   

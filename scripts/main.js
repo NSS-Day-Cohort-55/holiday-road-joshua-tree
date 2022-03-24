@@ -72,7 +72,7 @@ parksElement.addEventListener("change", event => {
                     for (let item of response.list){ 
                         if(dateArray[counter] === item.dt_txt.split(" ")[0] && counter<5) {
                             weatherElement.innerHTML += `
-                            <h4>
+                            <h4 style="margin-top: 1em">
                             ${formatDate(item.dt_txt)}
                             </h4>
                             <div class="forecast--display" id="day--forecast--display--${counter}">`
@@ -180,8 +180,8 @@ submitButton.addEventListener("click", event => {
         }
         // Call the function that POSTS an object to the Database, and pass in the TripObject. 
         createTrip(tripObject);
-        console.log(tripObject)
         savedTripCounter++
+        document.querySelector("#saved--trips--title").innerHTML = `Saved Trips`
         savedTripElement.innerHTML += `<h3>Trip ${savedTripCounter}</h3> ${saveTrip(tripObject)}`;
     });
 
