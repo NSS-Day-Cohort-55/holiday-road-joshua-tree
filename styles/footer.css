@@ -5,7 +5,8 @@ footer {
     height: 5em;
     width: 100%;
     align-content: flex-end;
-    background: linear-gradient(0deg, rgba(125,217,88,1) 0%, rgb(0 175 239) 100%);
+    /* background: rgb(45,92,103); */
+    background: linear-gradient(289deg, rgba(45,92,103,1) 0%, rgba(80,177,200,1) 37%, rgba(125,217,88,1) 73%);
     color: white;
     margin-top: auto;
     text-align: center;

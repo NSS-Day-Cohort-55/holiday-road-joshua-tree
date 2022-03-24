@@ -4,5 +4,5 @@
 
 #submit--button {
     margin: .5em;
-    /* background-image: url('/images/rain.webp') ; */
+    border-radius: 7px;
 }
